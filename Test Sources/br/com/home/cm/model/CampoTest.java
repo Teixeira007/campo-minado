@@ -1,3 +1,6 @@
+package br.com.home.cm.model;
+
+import br.com.home.cm.exception.ExplosaoException;
 import br.com.home.cm.model.Campo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,6 +77,86 @@ public class CampoTest {
         boolean resultado = campo.adicionarVizinho(vizinho);
         assertFalse(resultado);
     }
+
+    @Test
+    void testValorPadraoMarcado(){
+        assertFalse(campo.isMarcado());
+    }
+
+    @Test
+    void testCampoMinado(){
+        campo.minar();
+        assertTrue(campo.isMinado());
+    }
+    @Test
+    void testAlternarMarcacao(){
+        campo.alternarMarcacao();;
+        assertTrue(campo.isMarcado());
+    }
+
+    @Test
+    void testAlternarMarcacaoChamadaDupla(){
+        campo.alternarMarcacao();
+        campo.alternarMarcacao();
+        assertFalse(campo.isMarcado());
+    }
+
+    @Test
+    void testAbrirCampoNaoMinadoNaoMarcado(){
+        assertTrue(campo.abrirCampo());
+    }
+
+    @Test
+    void testAbrirCampoNaoMinadoMarcado(){
+        campo.alternarMarcacao();
+        assertFalse(campo.abrirCampo());
+    }
+
+    @Test
+    void testAbrirCampoMinadoNaoMarcado(){
+        campo.minar();
+        assertThrows(ExplosaoException.class, ()->{
+            campo.abrirCampo();
+        });
+    }
+
+    @Test
+    void testAbrirCampoMinadoMarcado(){
+        campo.alternarMarcacao();
+        campo.minar();
+        assertFalse(campo.abrirCampo());
+    }
+
+    @Test
+    void testAbrirComVizinhos(){
+        Campo campo11 = new Campo(1,1);
+        Campo campo22 = new Campo(2,2);
+
+        campo22.adicionarVizinho(campo11);
+        campo.adicionarVizinho(campo22);
+
+        campo.abrirCampo();
+
+        assertTrue(campo22.isAberto() && campo11.isAberto());
+    }
+
+    @Test
+    void testAbrirComVizinhosMinados(){
+        Campo campo11 = new Campo(1,1);
+        Campo campo22 = new Campo(2,2);
+
+        campo22.adicionarVizinho(campo11);
+        campo.adicionarVizinho(campo22);
+        campo11.minar();
+
+        campo.abrirCampo();
+
+        assertTrue(campo22.isAberto() && campo11.isFechado());
+    }
+
+
+
+
 
 
 
