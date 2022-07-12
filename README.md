@@ -26,5 +26,5 @@ Este projeto foi desenvolvido com as seguintes Tecnologias
 Curso Java 13 de Leonardo Leitão da Cod3r
 ## Resultado
 
-![Watch the video](https://github.com/Teixeira007/campo-minado/blob/main/static/video-campo-minado_Trim.mp4)
+https://github.com/Teixeira007/campo-minado/blob/main/static/video-campo-minado_Trim.mp4
 
