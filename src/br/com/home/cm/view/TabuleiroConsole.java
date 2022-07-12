@@ -24,7 +24,7 @@ public class TabuleiroConsole {
             boolean continuar = true;
 
             while(continuar){
-                cicloDoJogo();
+
                 System.out.println("Você que um novo jogo (S/n)");
                 String resposta = entrada.nextLine();
 

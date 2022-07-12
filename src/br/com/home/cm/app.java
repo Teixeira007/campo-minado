@@ -5,7 +5,7 @@ import br.com.home.cm.view.TabuleiroConsole;
 
 public class app {
     public static void main(String[] args) {
-        Tabuleiro tabuleiro = new Tabuleiro(6,6,6);
+        Tabuleiro tabuleiro = new Tabuleiro(10,10,15);
 
         new TabuleiroConsole(tabuleiro);
 
